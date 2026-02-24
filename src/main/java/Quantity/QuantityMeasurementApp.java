@@ -1,17 +1,46 @@
 package Quantity;
 
-public class QuantityMeasurementApp {
-	public static void main(String[] args) {
-		QuantityLength q1 = new QuantityLength(1.0, LengthUnit.FEET);
-		QuantityLength q2 = new QuantityLength(12.0, LengthUnit.INCH);
-		
-		System.out.println("Input: "+q1+ " and "+q2);
-		System.out.println("Equal? "+q1.equals(q2));
-		
-		QuantityLength q3 = new QuantityLength(1.0, LengthUnit.INCH);
-		QuantityLength q4 = new QuantityLength(1.0, LengthUnit.INCH);
-		
-		System.out.println("Input "+ q3 + " and "+q4);
-		System.out.println("Equal? "+q3.equals(q4));
+import java.util.Scanner;
+
+public class QuantityMeasurementApp {public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter first value:");
+        double val1 = sc.nextDouble();
+        String unit1 = sc.next();
+
+        System.out.println("Enter second value:");
+        double value2 = sc.nextDouble();
+        String unit2 = sc.next();
+
+        try {
+
+            QuantityLength q1 =
+                    new QuantityLength(val1, parseUnit(unit1));
+
+            QuantityLength q2 =
+                    new QuantityLength(value2, parseUnit(unit2));
+
+            System.out.println("Equal (" + q1.equals(q2) + ")");
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid unit entered.");
+        }
+    }
+
+    private static LengthUnit parseUnit(String unit) {
+
+        if (unit.equalsIgnoreCase("feet") ||
+                unit.equalsIgnoreCase("foot")) {
+            return LengthUnit.FEET;
+        }
+
+        if (unit.equalsIgnoreCase("inch") ||
+                unit.equalsIgnoreCase("inches")) {
+            return LengthUnit.INCH;
+        }
+
+        throw new IllegalArgumentException("Unsupported unit");
 	}
 }
