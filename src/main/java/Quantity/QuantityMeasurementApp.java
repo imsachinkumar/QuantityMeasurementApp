@@ -1,46 +1,35 @@
 package Quantity;
 
 import java.util.Scanner;
-
-public class QuantityMeasurementApp {public static void main(String[] args) {
-
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Enter first value:");
-        double val1 = sc.nextDouble();
-        String unit1 = sc.next();
-
-        System.out.println("Enter second value:");
-        double value2 = sc.nextDouble();
-        String unit2 = sc.next();
-
-        try {
-
-            QuantityLength q1 =
-                    new QuantityLength(val1, parseUnit(unit1));
-
-            QuantityLength q2 =
-                    new QuantityLength(value2, parseUnit(unit2));
-
-            System.out.println("Equal (" + q1.equals(q2) + ")");
-
-        } catch (IllegalArgumentException e) {
-            System.out.println("Invalid unit entered.");
-        }
+public class QuantityMeasurementApp {
+	public static void demonstrateLengthConversion(double value,LengthUnit from,LengthUnit to) {
+        double result = QuantityLength.convert(value, from, to);
+        System.out.println("Convert " + value + " " + from + " to " + to + ":" + result + " " + to);
     }
+    public static void demonstrateLengthConversion(
+            QuantityLength length,
+            LengthUnit target) {
 
-    private static LengthUnit parseUnit(String unit) {
+        QuantityLength converted = length.convertTo(target);
+        System.out.println("Convert " + length + " to " + target + ":" + converted);
+    }
+    public static void demonstrateLengthEquality(
+            QuantityLength q1,
+            QuantityLength q2) {
 
-        if (unit.equalsIgnoreCase("feet") ||
-                unit.equalsIgnoreCase("foot")) {
-            return LengthUnit.FEET;
-        }
+        System.out.println("Compare " + q1 + " and " + q2 + " Equal: " + q1.equals(q2));
+    }
+    public static void main(String[] args) {
+        demonstrateLengthConversion(1.0, LengthUnit.FEET,LengthUnit.INCH);
+        demonstrateLengthConversion(3.0,LengthUnit.YARDS,LengthUnit.FEET);
+        demonstrateLengthConversion(36.0,LengthUnit.INCH,LengthUnit.YARDS);
+        demonstrateLengthConversion(2.54,LengthUnit.CENTIMETERS,LengthUnit.INCH);
 
-        if (unit.equalsIgnoreCase("inch") ||
-                unit.equalsIgnoreCase("inches")) {
-            return LengthUnit.INCH;
-        }
+        QuantityLength length = new QuantityLength(1.0, LengthUnit.YARDS);
 
-        throw new IllegalArgumentException("Unsupported unit");
-	}
+        demonstrateLengthConversion(length,LengthUnit.INCH);
+        QuantityLength q1 =new QuantityLength(1.0, LengthUnit.FEET);
+        QuantityLength q2 = new QuantityLength(12.0, LengthUnit.INCH);
+        demonstrateLengthEquality(q1, q2);
+    }
 }
