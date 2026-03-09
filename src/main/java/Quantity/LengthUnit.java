@@ -6,6 +6,7 @@ public enum LengthUnit {
     YARDS(3.0),
     CENTIMETERS(0.393701 / 12.0);
     private final double conversionFactorToFeet;
+    
     LengthUnit(double conversionFactorToFeet) {
         this.conversionFactorToFeet = conversionFactorToFeet;
     }
