@@ -7,6 +7,7 @@ public final class QuantityLength {
     private final LengthUnit unit;
 
     private static final double EPSILON = 1e-6;
+
     public QuantityLength(double value, LengthUnit unit) {
 
         if (!Double.isFinite(value))
@@ -55,23 +56,34 @@ public final class QuantityLength {
     public boolean equals(Object obj) {
 
         if (this == obj) return true;
+
         if (obj == null || getClass() != obj.getClass())
             return false;
 
         QuantityLength other = (QuantityLength) obj;
-        return Math.abs(this.toBaseUnit() - other.toBaseUnit()) < EPSILON;
+
+        return Math.abs(
+                this.toBaseUnit() - other.toBaseUnit()
+        ) < EPSILON;
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(toBaseUnit());
     }
 
-    private static double addInBaseUnit(QuantityLength q1,QuantityLength q2) {
+
+    private static double addInBaseUnit(
+            QuantityLength q1,
+            QuantityLength q2) {
 
         return q1.toBaseUnit() + q2.toBaseUnit();
     }
 
-    public static QuantityLength add(QuantityLength q1,QuantityLength q2,LengthUnit targetUnit) {
+    public static QuantityLength add(
+            QuantityLength q1,
+            QuantityLength q2,
+            LengthUnit targetUnit) {
 
         if (q1 == null || q2 == null)
             throw new IllegalArgumentException("Operands cannot be null.");
@@ -86,11 +98,12 @@ public final class QuantityLength {
         return new QuantityLength(result, targetUnit);
     }
 
-    public static QuantityLength add(QuantityLength q1,QuantityLength q2) {
+    public static QuantityLength add( QuantityLength q1, QuantityLength q2) {
 
         return add(q1, q2, q1.unit);
     }
-    public QuantityLength add(QuantityLength other,LengthUnit targetUnit) {
+
+    public QuantityLength add(QuantityLength other, LengthUnit targetUnit) {
 
         return add(this, other, targetUnit);
     }
