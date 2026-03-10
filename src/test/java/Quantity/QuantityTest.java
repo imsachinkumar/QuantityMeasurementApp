@@ -1,4 +1,4 @@
-package org.example;
+package Quantity;
 
 import UtilityClasses.*;
 import org.junit.jupiter.api.Test;
@@ -67,7 +67,7 @@ class QuantityTest {
         assertEquals(2.0, result.getValue(), EPS);
     }
 
-    // ---------------- CROSS CATEGORY SAFETY ----------------
+    // ---------------- CROSS CATEGORY ----------------
 
     @Test
     void testCrossCategoryComparison() {
@@ -91,7 +91,7 @@ class QuantityTest {
                 () -> new Quantity<>(Double.NaN, LengthUnit.FEET));
     }
 
-    // ---------------- VOLUME EQUALITY TESTS ----------------
+    // ---------------- VOLUME EQUALITY ----------------
 
     @Test
     void testEquality_LitreToLitre_SameValue() {
@@ -133,7 +133,7 @@ class QuantityTest {
         assertNotEquals(volume, weight);
     }
 
-    // ---------------- CONVERSION TESTS ----------------
+    // ---------------- CONVERSION ----------------
 
     @Test
     void testConversion_LitreToMillilitre() {
@@ -165,7 +165,7 @@ class QuantityTest {
         assertEquals(original.getValue(), converted.getValue(), EPS);
     }
 
-    // ---------------- ADDITION TESTS ----------------
+    // ---------------- ADDITION ----------------
 
     @Test
     void testAddition_LitrePlusMillilitre() {
@@ -200,15 +200,56 @@ class QuantityTest {
         assertEquals(VolumeUnit.GALLON, result.getUnit());
     }
 
-    // ---------------- EXTRA VALIDATION ----------------
+    // ---------------- SUBTRACTION ----------------
 
     @Test
-    void testAddition_WithZero() {
-        Quantity<VolumeUnit> v1 = new Quantity<>(5.0, VolumeUnit.LITRE);
-        Quantity<VolumeUnit> zero = new Quantity<>(0.0, VolumeUnit.MILLILITRE);
+    void testSubtraction_SameUnit_Length() {
+        Quantity<LengthUnit> q1 = new Quantity<>(10.0, LengthUnit.FEET);
+        Quantity<LengthUnit> q2 = new Quantity<>(5.0, LengthUnit.FEET);
 
-        Quantity<VolumeUnit> result = v1.add(zero);
+        Quantity<LengthUnit> result = q1.subtract(q2);
 
         assertEquals(5.0, result.getValue(), EPS);
+        assertEquals(LengthUnit.FEET, result.getUnit());
+    }
+
+    @Test
+    void testSubtraction_CrossUnit_Length() {
+        Quantity<LengthUnit> q1 = new Quantity<>(10.0, LengthUnit.FEET);
+        Quantity<LengthUnit> q2 = new Quantity<>(6.0, LengthUnit.INCH);
+
+        Quantity<LengthUnit> result = q1.subtract(q2);
+
+        assertEquals(9.5, result.getValue(), EPS);
+    }
+
+    @Test
+    void testSubtraction_ResultNegative() {
+        Quantity<WeightUnit> q1 = new Quantity<>(2.0, WeightUnit.KILOGRAM);
+        Quantity<WeightUnit> q2 = new Quantity<>(5.0, WeightUnit.KILOGRAM);
+
+        Quantity<WeightUnit> result = q1.subtract(q2);
+
+        assertEquals(-3.0, result.getValue(), EPS);
+    }
+
+    @Test
+    void testSubtraction_ExplicitTargetUnit() {
+        Quantity<VolumeUnit> q1 = new Quantity<>(5.0, VolumeUnit.LITRE);
+        Quantity<VolumeUnit> q2 = new Quantity<>(2.0, VolumeUnit.LITRE);
+
+        Quantity<VolumeUnit> result = q1.subtract(q2, VolumeUnit.MILLILITRE);
+
+        assertEquals(3000.0, result.getValue(), EPS);
+        assertEquals(VolumeUnit.MILLILITRE, result.getUnit());
+    }
+
+    @Test
+    void testSubtraction_CrossCategory_ShouldThrow() {
+        Quantity<LengthUnit> l = new Quantity<>(10.0, LengthUnit.FEET);
+        Quantity<WeightUnit> w = new Quantity<>(5.0, WeightUnit.KILOGRAM);
+
+        assertThrows(IllegalArgumentException.class,
+                () -> l.subtract((Quantity) w));
     }
 }
