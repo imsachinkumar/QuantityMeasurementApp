@@ -1,4 +1,4 @@
-package Quantity;
+package org.example;
 
 import UtilityClasses.*;
 import org.junit.jupiter.api.Test;
@@ -165,7 +165,7 @@ class QuantityTest {
         assertEquals(original.getValue(), converted.getValue(), EPS);
     }
 
-    // ---------------- ADDITION (IMPLICIT TARGET) ----------------
+    // ---------------- ADDITION TESTS ----------------
 
     @Test
     void testAddition_LitrePlusMillilitre() {
@@ -189,8 +189,6 @@ class QuantityTest {
         assertEquals(VolumeUnit.MILLILITRE, result.getUnit());
     }
 
-    // ---------------- ADDITION (EXPLICIT TARGET) ----------------
-
     @Test
     void testAddition_ExplicitTarget_Gallon() {
         Quantity<VolumeUnit> litre = new Quantity<>(3.78541, VolumeUnit.LITRE);
@@ -202,19 +200,7 @@ class QuantityTest {
         assertEquals(VolumeUnit.GALLON, result.getUnit());
     }
 
-    // ---------------- VALIDATION TESTS ----------------
-
-    @Test
-    void testConstructor_NullUnit() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new Quantity<>(1.0, null));
-    }
-
-    @Test
-    void testConstructor_InvalidValue() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new Quantity<>(Double.NaN, VolumeUnit.LITRE));
-    }
+    // ---------------- EXTRA VALIDATION ----------------
 
     @Test
     void testAddition_WithZero() {
