@@ -1,23 +1,27 @@
 package Service;
 
-import Exception.QuantityMeasurementException;
-import Model.*;
-import Repository.IQuantityMeasurementRepository;
-import UtilityClasses.IMeasurable;
-import UtilityClasses.Quantity;
+import com.app.quantitymeasurement.entity.QuantityDTO;
+import com.app.quantitymeasurement.entity.QuantityMeasurementEntity;
+import com.app.quantitymeasurement.entity.QuantityModel;
+import com.app.quantitymeasurement.exception.QuantityMeasurementException;
+import com.app.quantitymeasurement.repository.IQuantityMeasurementRepository;
+import com.app.quantitymeasurement.unit.IMeasurable;
+import com.app.quantitymeasurement.unit.Quantity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class QuantityMeasurementServiceImpl implements IQuantityMeasurementService {
 
+    private static final Logger logger = LoggerFactory.getLogger(QuantityMeasurementServiceImpl.class);
     private final IQuantityMeasurementRepository repository;
 
     public QuantityMeasurementServiceImpl(IQuantityMeasurementRepository repository) {
         this.repository = repository;
+        logger.info("QuantityMeasurementServiceImpl initialized");
     }
 
     private IMeasurable resolveUnit(QuantityDTO dto) {
-        return IMeasurable.getUnitInstance(
-                dto.getUnit().getMeasurementType(),
-                dto.getUnit().getUnitName());
+        return IMeasurable.getUnitInstance(dto.getUnit().getMeasurementType(), dto.getUnit().getUnitName());
     }
 
     @SuppressWarnings("unchecked")
@@ -27,10 +31,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
     }
 
     private QuantityDTO fromQuantity(Quantity<? extends IMeasurable> q) {
-        String type = q.getUnit().getMeasurementType();
-        String name = q.getUnit().getUnitName();
-        QuantityDTO.IMeasurableUnit dtoUnit = resolveDtoUnit(type, name);
-        return new QuantityDTO(q.getValue(), dtoUnit);
+        return new QuantityDTO(q.getValue(), resolveDtoUnit(q.getUnit().getMeasurementType(), q.getUnit().getUnitName()));
     }
 
     private QuantityDTO.IMeasurableUnit resolveDtoUnit(String type, String name) {
@@ -56,6 +57,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
             repository.save(entity);
             return entity;
         } catch (Exception e) {
+            logger.error("Compare failed: {}", e.getMessage());
             QuantityMeasurementEntity entity = new QuantityMeasurementEntity(e.getMessage());
             repository.save(entity);
             return entity;
@@ -74,6 +76,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
             repository.save(entity);
             return entity;
         } catch (Exception e) {
+            logger.error("Convert failed: {}", e.getMessage());
             QuantityMeasurementEntity entity = new QuantityMeasurementEntity(e.getMessage());
             repository.save(entity);
             return entity;
@@ -94,6 +97,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
             repository.save(entity);
             return entity;
         } catch (Exception e) {
+            logger.error("Add failed: {}", e.getMessage());
             QuantityMeasurementEntity entity = new QuantityMeasurementEntity(e.getMessage());
             repository.save(entity);
             return entity;
@@ -114,6 +118,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
             repository.save(entity);
             return entity;
         } catch (Exception e) {
+            logger.error("Subtract failed: {}", e.getMessage());
             QuantityMeasurementEntity entity = new QuantityMeasurementEntity(e.getMessage());
             repository.save(entity);
             return entity;
@@ -134,6 +139,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
             repository.save(entity);
             return entity;
         } catch (Exception e) {
+            logger.error("Divide failed: {}", e.getMessage());
             QuantityMeasurementEntity entity = new QuantityMeasurementEntity(e.getMessage());
             repository.save(entity);
             return entity;

@@ -1,7 +1,7 @@
 package Service;
 
-import Model.QuantityDTO;
-import Model.QuantityMeasurementEntity;
+import com.app.quantitymeasurement.entity.QuantityDTO;
+import com.app.quantitymeasurement.entity.QuantityMeasurementEntity;
 
 public interface IQuantityMeasurementService {
     QuantityMeasurementEntity compare(QuantityDTO q1, QuantityDTO q2);

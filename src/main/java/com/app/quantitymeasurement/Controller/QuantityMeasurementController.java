@@ -1,15 +1,19 @@
 package Controller;
 
-import Model.QuantityDTO;
-import Model.QuantityMeasurementEntity;
-import Service.IQuantityMeasurementService;
+import com.app.quantitymeasurement.entity.QuantityDTO;
+import com.app.quantitymeasurement.entity.QuantityMeasurementEntity;
+import com.app.quantitymeasurement.service.IQuantityMeasurementService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class QuantityMeasurementController {
 
+    private static final Logger logger = LoggerFactory.getLogger(QuantityMeasurementController.class);
     private final IQuantityMeasurementService service;
 
     public QuantityMeasurementController(IQuantityMeasurementService service) {
         this.service = service;
+        logger.info("QuantityMeasurementController initialized");
     }
 
     public void performComparison(QuantityDTO q1, QuantityDTO q2) {
@@ -39,8 +43,8 @@ public class QuantityMeasurementController {
 
     private void displayResult(QuantityMeasurementEntity entity) {
         if (entity.hasError())
-            System.out.println("Error: " + entity.getErrorMessage());
+            logger.error("Operation failed: {}", entity.getErrorMessage());
         else
-            System.out.println(entity);
+            logger.info("{}", entity);
     }
 }

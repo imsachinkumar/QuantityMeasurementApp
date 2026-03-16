@@ -1,6 +1,7 @@
-package Model;
-import java.io.Serializable;
-public class QuantityDTO   {
+package com.app.quantitymeasurement.entity;
+
+public class QuantityDTO {
+
     public interface IMeasurableUnit {
         String getUnitName();
         String getMeasurementType();
@@ -40,7 +41,6 @@ public class QuantityDTO   {
 
     public double getValue()         { return value; }
     public IMeasurableUnit getUnit() { return unit;  }
-
     public void setValue(double value)        { this.value = value; }
     public void setUnit(IMeasurableUnit unit) { this.unit  = unit;  }
 

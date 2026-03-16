@@ -1,28 +1,19 @@
-package UtilityClasses;
+package com.app.quantitymeasurement.unit;
 
 public interface IMeasurable {
-
-    //Mandatory conversion methods
-
-    double getConversionFactor();
-
-    double convertToBaseUnit(double value);
-
-    double convertFromBaseUnit(double baseValue);
-
-    String getUnitName();
-
-    //  Functional Interface
 
     @FunctionalInterface
     interface SupportsArithmetic {
         boolean isSupported();
     }
 
-    // Default lambda: all units support arithmetic unless overridden
     SupportsArithmetic supportsArithmetic = () -> true;
 
-    // ── Default Methods (optional — override only when needed) ─────────────
+    double getConversionFactor();
+    double convertToBaseUnit(double value);
+    double convertFromBaseUnit(double baseValue);
+    String getUnitName();
+    String getMeasurementType();
 
     default boolean supportsArithmetic() {
         return supportsArithmetic.isSupported();
@@ -30,8 +21,6 @@ public interface IMeasurable {
 
     default void validateOperationSupport(String operation) {
     }
-
-    String getMeasurementType();
 
     static IMeasurable getUnitInstance(String measurementType, String unitName) {
         switch (measurementType.toUpperCase()) {
