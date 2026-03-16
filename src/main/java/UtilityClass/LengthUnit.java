@@ -1,4 +1,5 @@
-package Quantity;
+package UtilityClasses;
+
 public enum LengthUnit implements IMeasurable {
 
     FEET(1.0),
@@ -30,5 +31,10 @@ public enum LengthUnit implements IMeasurable {
     @Override
     public String getUnitName() {
         return name();
+    }
+
+    @Override
+    public String getMeasurementType() {
+        return "LENGTH";
     }
 }

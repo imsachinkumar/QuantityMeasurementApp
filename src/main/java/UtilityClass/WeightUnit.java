@@ -1,4 +1,5 @@
-package Quantity;
+package UtilityClasses;
+
 public enum WeightUnit implements IMeasurable {
 
     KILOGRAM(1.0),
@@ -29,5 +30,10 @@ public enum WeightUnit implements IMeasurable {
     @Override
     public String getUnitName() {
         return name();
+    }
+
+    @Override
+    public String getMeasurementType() {
+        return "WEIGHT";
     }
 }

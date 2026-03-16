@@ -1,4 +1,4 @@
-package Quantity;
+package UtilityClasses;
 
 public enum VolumeUnit implements IMeasurable {
 
@@ -30,5 +30,10 @@ public enum VolumeUnit implements IMeasurable {
     @Override
     public String getUnitName() {
         return this.name();
+    }
+
+    @Override
+    public String getMeasurementType() {
+        return "VOLUME";
     }
 }
