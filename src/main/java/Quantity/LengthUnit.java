@@ -1,5 +1,4 @@
 package Quantity;
-
 public enum LengthUnit implements IMeasurable {
 
     FEET(1.0),

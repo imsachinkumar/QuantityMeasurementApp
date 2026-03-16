@@ -1,5 +1,4 @@
 package Quantity;
-
 public enum WeightUnit implements IMeasurable {
 
     KILOGRAM(1.0),
