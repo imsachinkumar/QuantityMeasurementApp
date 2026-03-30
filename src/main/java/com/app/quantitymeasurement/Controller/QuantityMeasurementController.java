@@ -1,4 +1,4 @@
-package Controller;
+package com.app.quantitymeasurement.controller;
 
 import com.app.quantitymeasurement.model.QuantityInputDTO;
 import com.app.quantitymeasurement.model.QuantityMeasurementDTO;

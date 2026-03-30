@@ -1,4 +1,4 @@
-package test.java.com.app.quantitymeasurement;
+package com.app.quantitymeasurement;
 
 import com.app.quantitymeasurement.model.QuantityDTO;
 import com.app.quantitymeasurement.model.QuantityInputDTO;

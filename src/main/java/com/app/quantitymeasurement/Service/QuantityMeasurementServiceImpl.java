@@ -1,4 +1,4 @@
-package Service;
+package com.app.quantitymeasurement.service;
 
 import com.app.quantitymeasurement.exception.QuantityMeasurementException;
 import com.app.quantitymeasurement.model.QuantityDTO;

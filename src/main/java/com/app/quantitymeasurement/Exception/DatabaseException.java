@@ -1,4 +1,4 @@
-package main.java.com.app.quantitymeasurement.Exception;
+package com.app.quantitymeasurement.exception;
 
 public class DatabaseException extends RuntimeException {
     public DatabaseException(String message)                  { super(message); }

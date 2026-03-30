@@ -1,4 +1,4 @@
-package test.java.Quantity;
+package org.example;
 
 
 import com.app.quantitymeasurement.unit.*;
