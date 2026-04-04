@@ -1,4 +1,4 @@
-package com.app.quantity.model;
+package com.app.quantitymeasurement.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -13,6 +13,8 @@ public class Quantity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "quantity_value")
     private double value;
+    
     private String unit;
 }

@@ -1,4 +1,4 @@
-package com.app.quantitymeasurement.repository;
+package com.app.quantitymeasurement.Repository;
 
 import com.app.quantitymeasurement.model.QuantityMeasurementEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

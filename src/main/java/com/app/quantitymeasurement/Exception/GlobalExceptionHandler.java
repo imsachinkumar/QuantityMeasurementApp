@@ -1,4 +1,4 @@
-package com.app.quantity.exception;
+package com.app.quantitymeasurement.Exception;
 
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;

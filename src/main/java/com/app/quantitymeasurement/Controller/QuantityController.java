@@ -1,7 +1,7 @@
-package com.app.quantity.controller;
+package com.app.quantitymeasurement.Controller;
 
-import com.app.quantity.dto.InputDTO;
-import com.app.quantity.service.QuantityService;
+import com.app.quantitymeasurement.dto.InputDTO;
+import com.app.quantitymeasurement.Service.QuantityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

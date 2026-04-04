@@ -1,4 +1,4 @@
-package com.app.quantitymeasurement.service;
+package com.app.quantitymeasurement.Service;
 
 import com.app.quantitymeasurement.model.QuantityDTO;
 import com.app.quantitymeasurement.model.QuantityMeasurementDTO;

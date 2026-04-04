@@ -1,6 +1,6 @@
-package com.app.quantity.service;
+package com.app.quantitymeasurement.Service;
 
-import com.app.quantity.dto.InputDTO;
+import com.app.quantitymeasurement.dto.InputDTO;
 
 public interface QuantityService {
     boolean compare(InputDTO a, InputDTO b);

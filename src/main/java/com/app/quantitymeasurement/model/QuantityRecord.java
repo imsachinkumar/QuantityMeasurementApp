@@ -1,4 +1,4 @@
-package com.app.quantity.model;
+package com.app.quantitymeasurement.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,6 +20,8 @@ public class QuantityRecord {
     private String unit2;
 
     private String operation;
+    
+    @Column(name = "result_value")
     private double result;
 
     private String type;

@@ -1,7 +1,9 @@
 package com.app.quantitymeasurement.auth.controller;
 
+import com.app.quantitymeasurement.auth.dto.AuthResponse;
 import com.app.quantitymeasurement.auth.dto.LoginRequest;
 import com.app.quantitymeasurement.auth.dto.RegisterRequest;
+import com.app.quantitymeasurement.security.jwt.JwtService;
 import com.app.quantitymeasurement.user.entity.Role;
 import com.app.quantitymeasurement.user.entity.User;
 import com.app.quantitymeasurement.user.repository.UserRepository;

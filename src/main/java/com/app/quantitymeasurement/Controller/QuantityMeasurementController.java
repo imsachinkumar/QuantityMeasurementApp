@@ -1,8 +1,8 @@
-package com.app.quantitymeasurement.controller;
+package com.app.quantitymeasurement.Controller;
 
 import com.app.quantitymeasurement.model.QuantityInputDTO;
 import com.app.quantitymeasurement.model.QuantityMeasurementDTO;
-import com.app.quantitymeasurement.service.IQuantityMeasurementService;
+import com.app.quantitymeasurement.Service.IQuantityMeasurementService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

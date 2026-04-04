@@ -1,12 +1,12 @@
-package com.app.quantitymeasurement.service;
+package com.app.quantitymeasurement.Service;
 
-import com.app.quantitymeasurement.exception.QuantityMeasurementException;
+import com.app.quantitymeasurement.Exception.QuantityMeasurementException;
 import com.app.quantitymeasurement.model.QuantityDTO;
 import com.app.quantitymeasurement.model.QuantityMeasurementDTO;
 import com.app.quantitymeasurement.model.QuantityMeasurementEntity;
-import com.app.quantitymeasurement.repository.QuantityMeasurementRepository;
-import com.app.quantitymeasurement.unit.IMeasurable;
-import com.app.quantitymeasurement.unit.Quantity;
+import com.app.quantitymeasurement.Repository.QuantityMeasurementRepository;
+import com.app.quantitymeasurement.Unit.IMeasurable;
+import com.app.quantitymeasurement.Unit.Quantity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

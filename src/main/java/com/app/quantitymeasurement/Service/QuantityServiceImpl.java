@@ -1,13 +1,13 @@
-package com.app.quantity.service;
+package com.app.quantitymeasurement.Service;
 
-import com.app.quantity.dto.InputDTO;
-import com.app.quantity.model.QuantityRecord;
-import com.app.quantity.repository.QuantityRepository;
+import com.app.quantitymeasurement.dto.InputDTO;
+import com.app.quantitymeasurement.model.QuantityRecord;
+import com.app.quantitymeasurement.Repository.QuantityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class QuantityServiceImpl implements com.app.quantity.service.QuantityService {
+public class QuantityServiceImpl implements com.app.quantitymeasurement.Service.QuantityService {
 
     @Autowired
     private QuantityRepository repo;
